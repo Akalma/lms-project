@@ -1,0 +1,14 @@
+.bb-0{
+    margin-bottom: 0px !important;
+}
+.is-invalid .cd-signin-modal__error{
+    visibility: visible;
+    opacity: 1;
+    padding: 0.3em;
+    font-size: 12px;
+    bottom: -30px;
+    left: 0px;
+}
+.invalid-feedback {
+    margin-top: -1rem;
+}

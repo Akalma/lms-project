@@ -1,0 +1,24 @@
+{
+  "name": "learn-starter",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "bootstrap": "^4.5.3",
+    "formik": "^2.2.5",
+    "next": "^10.0.0",
+    "react": "16.13.1",
+    "react-bootstrap": "^1.4.0",
+    "react-datepicker": "^3.3.0",
+    "react-dom": "16.13.1",
+    "react-js-pagination": "^3.0.3",
+    "react-json-to-csv": "^1.0.4",
+    "react-toastify": "^6.1.0",
+    "yup": "^0.31.0"
+  }
+}
