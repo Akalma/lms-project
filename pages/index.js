@@ -11,7 +11,9 @@ export default function Home() {
 		const Response = await axios.post(process.env.API_URL+"/login", FormData);
 		// If all good, redirect to meeting page.
 		if (Response.data.status == "success") {
-		  	sessionStorage.setItem("UserLogin", true);
+			  sessionStorage.setItem("UserLogin", true);
+			  sessionStorage.setItem("UserID", Response.data.result.id);
+			  sessionStorage.setItem("UserType", Response.data.result.type);
 			Router.push('/dashboard');
 		  	notify_success(Response.data.message);
 		} else {

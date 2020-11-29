@@ -6,9 +6,16 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Router from 'next/router';
+import React, { useState, useEffect  } from 'react'
 
 export default function Home() {
+	const [added_by, setAddedBy] = useState("");
 
+	useEffect(() => {
+		setAddedBy(sessionStorage.getItem("UserID"));
+	}, []);
+	
+	
 	async function SubmitForm(FormData){
 		const Response = await axios.post(process.env.API_URL+"/create-data", FormData);
 		// If all good, redirect to meeting page.
@@ -69,20 +76,21 @@ export default function Home() {
 	
 	 <div className="row justify-content-center">
 	<div className="col-lg-8">
-	<Formik
+	<Formik enableReinitialize
                       initialValues={{
                         first_name: '',
 						last_name: '',
 						mobile: '',
 						area: '',
 						existing_broadband: '',
-						lead_type: ''
+						lead_type: '',
+						added_by:  added_by
                       }}
                       validationSchema={Yup.object().shape({
 						first_name: Yup.string()
 							.required('First name required'),
-						last_name: Yup.string()
-							.required('Last name required'),
+						// last_name: Yup.string()
+						// 	.required('Last name required'),
 						mobile: Yup.string()
 							.required('Mobile number required'),
 						area: Yup.string()
@@ -167,9 +175,9 @@ export default function Home() {
                 <div className="form-group">
 				<Field as="select" name="lead_type" className={'form-control form-select' + (errors.lead_type && touched.lead_type ? ' is-invalid' : '')}>
 					<option value=""> Select </option>
-				  	<option value="1">Value 1</option>
-				  	<option value="2">Value 1</option>
-				  	<option value="3">Value 1</option>
+				  	<option value="HOT">HOT</option>
+				  	<option value="WARM">WARM</option>
+				  	<option value="COLD">COLD</option>
 				  </Field>
 				<ErrorMessage name="lead_type" component="div" className="invalid-feedback" />
         </div>
@@ -188,6 +196,7 @@ export default function Home() {
 
 	          
 	  </div>
+	  <Field type="hidden" name="added_by" id="added_by" />
 	  </Form>
                       )}
                       </Formik>

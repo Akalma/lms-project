@@ -17,7 +17,7 @@ const Header = () => (
                 <div className="container">			
                     <div className="row">			
                         <div className="col-lg-12 copyright-area">
-                            <p>© Copyright 2020, Lead Management System All Rights Reserved | Design &amp; Devloped By <a href="https://www.webredas.com/">Webredas</a></p>	 
+                            <p>© Copyright 2020, Lead Management System All Rights Reserved | Design &amp; Devloped By  Akalma technologies</p>	 
                         </div>
                     </div>
                 </div>

@@ -43,6 +43,8 @@ export default function Home() {
   async function LoadData(pageNumber) {
     setLoading(true);
     var params = {
+      type: sessionStorage.getItem("UserType"),
+      added_by: sessionStorage.getItem("UserID"),
       page: per_page * (pageNumber - 1),
       limit: per_page,
       start_date: startDate? startDate:"",
@@ -68,6 +70,7 @@ export default function Home() {
           <td>{data[i].area}</td>
           <td>{data[i].existing_broadband}</td>
           <td>{data[i].lead_type}</td>
+          <td>{data[i].name}</td>
         </tr>
       );
     }
@@ -132,7 +135,7 @@ export default function Home() {
 	  <div className="col-lg-3">
 	  <ul className="btnlist text-right">
 			<li><input type="submit" value="View" className="lightBtn2"  /></li>
-			<li>   <CsvDownload data={mockData} className="lightBtn2">Dwnload</CsvDownload>  </li>
+			<li>   <CsvDownload data={mockData} className="lightBtn2">Download</CsvDownload>  </li>
 			</ul>
 			</div>
 			
@@ -154,7 +157,8 @@ export default function Home() {
                 <th scope="col">Mobile</th>
                 <th scope="col">Area</th>
                 <th scope="col">Existing Broadband</th>
-              <th scope="col">Lead Type</th>
+                <th scope="col">Lead Type</th>
+                <th scope="col">Added By</th>
               </tr>
             </thead>
             <tbody>
