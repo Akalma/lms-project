@@ -34,7 +34,7 @@ module.exports = {
     } else {
 
       // var sql = "SELECT * FROM appusers WHERE email = "+connection.escape(req.body.email)+" AND  password = MD5("+connection.escape(req.body.password)+") ";
-     var sql = "SELECT * FROM users WHERE email = "+connection.escape(req.body.email)+" AND  password = "+connection.escape(req.body.password);
+     var sql = "SELECT * FROM appusers WHERE email = "+connection.escape(req.body.email)+" AND  password = "+connection.escape(req.body.password);
      connection.query(sql, function (err, result) {
         if (err) {
           res.status(200).send({
