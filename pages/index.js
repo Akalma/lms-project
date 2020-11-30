@@ -73,8 +73,8 @@ export default function Home() {
                       }}
                       validationSchema={Yup.object().shape({
                           email: Yup.string()
-                              .email('Enter valid email address')
-                              .required('Email address required'),
+                              // .email('Enter valid email address')
+                              .required('User id required'),
                           password: Yup.string()
                               .min(6, 'Password must be at least 6 characters')
                               .required('Password is required')
@@ -89,7 +89,7 @@ export default function Home() {
 						<Form>
 					<p className={'cd-signin-modal__fieldset' + (errors.email && touched.email ? ' is-invalid' : '')}>
 						<label className="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" htmlFor="signin-email">E-mail</label>
-						<Field type="email" className='form-control cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border'  id="signin-email" name="email" placeholder="User ID" />
+						<Field type="text" className='form-control cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border'  id="signin-email" name="email" placeholder="User ID" />
 						<ErrorMessage name="email" component="span" className= {errors.email && touched.email ? ' cd-signin-modal__error' : ''} />
 					</p>
 
