@@ -6,7 +6,6 @@ import DatePicker from "react-datepicker";
 import axios from 'axios';
 import Pagination from "react-js-pagination";
 import CsvDownload from 'react-json-to-csv';
-import moment from 'moment';
 export default function Home() {
 
   const today = new Date();
