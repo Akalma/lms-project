@@ -6,8 +6,11 @@ import DatePicker from "react-datepicker";
 import axios from 'axios';
 import Pagination from "react-js-pagination";
 import CsvDownload from 'react-json-to-csv';
-
+import moment from 'moment';
 export default function Home() {
+
+  const today = new Date();
+
   const [startDate, setStartDate] = useState();
   const [startDate2, setStartDate2] = useState();
 
@@ -118,13 +121,16 @@ export default function Home() {
 	</div>
 	<div className="col-lg-3">
                     <div className="input-group">
-                    <DatePicker dateFormat="dd/MM/yyyy" selected={startDate} onChange={date => setStartDate(date)} classNameName="form-control border-right-0 border from-field bb-0" id="datepicker" name="datepicker" />
+                    <DatePicker onCalendarClose={e => setStartDate2("")} dateFormat="dd/MM/yyyy" selected={startDate} onChange={date => setStartDate(date)} classNameName="form-control border-right-0 border from-field bb-0" id="datepicker" name="datepicker" />
                     <span className="input-group-append"> <div className="input-group-text bg-transparent"><i className="fa fa-calendar"></i></div> </span> </div>
       </div>
 	  
 	  <div className="col-lg-3">
                     <div className="input-group">
-                    <DatePicker dateFormat="dd/MM/yyyy" selected={startDate2} onChange={date => setStartDate2(date)} classNameName="form-control border-right-0 border from-field bb-0" id="datepicker2" name="datepicker2" />
+                    <DatePicker 
+                    
+                    minDate={startDate} 
+                    dateFormat="dd/MM/yyyy" selected={startDate2} onChange={date => setStartDate2(date)} classNameName="form-control border-right-0 border from-field bb-0" id="datepicker2" name="datepicker2" />
                     <span className="input-group-append">
                       <div className="input-group-text bg-transparent"><i className="fa fa-calendar"></i></div>
                       </span> </div>
