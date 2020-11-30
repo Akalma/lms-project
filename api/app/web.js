@@ -29,8 +29,9 @@ module.exports = function (app) {
 
   app
     .post('/web/login', [
-      check('email').trim().isEmail().withMessage('Enter valid email').isLength({ min: 1 }).withMessage('Enter email address'),
-      check('password').trim().isLength({ min: 1 }).withMessage('Enter password')
+      // check('email').trim().isEmail().withMessage('Enter valid email').isLength({ min: 1 }).withMessage('Enter email address'),
+      check('email').trim().isLength({ min: 1 }).withMessage('Enter user id'),
+       check('password').trim().isLength({ min: 1 }).withMessage('Enter password')
     ], WebAppController.login)
 
     .post('/web/create-data', [
