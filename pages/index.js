@@ -93,7 +93,7 @@ export default function Home() {
 						<ErrorMessage name="email" component="span" className= {errors.email && touched.email ? ' cd-signin-modal__error' : ''} />
 					</p>
 
-					<p className={'cd-signin-modal__fieldset' + (errors.email && touched.email ? ' is-invalid' : '')}>
+					<p className={'cd-signin-modal__fieldset' + (errors.password && touched.password ? ' is-invalid' : '')}>
 						<label className="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" htmlFor="signin-password">Password</label>
 						<Field type="password" className="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signin-password" name="password" placeholder="Password" />
 						<ErrorMessage name="password" component="span" className= {errors.password && touched.password ? ' cd-signin-modal__error' : ''} />

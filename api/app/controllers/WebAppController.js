@@ -33,8 +33,8 @@ module.exports = {
       });
     } else {
 
-      // var sql = "SELECT * FROM appusers WHERE email = "+connection.escape(req.body.email)+" AND  password = MD5("+connection.escape(req.body.password)+") ";
-     var sql = "SELECT * FROM appusers WHERE email = "+connection.escape(req.body.email)+" AND  password = "+connection.escape(req.body.password);
+    var sql = "SELECT * FROM appusers WHERE email = "+connection.escape(req.body.email)+" AND  password = MD5("+connection.escape(req.body.password)+") ";
+     //var sql = "SELECT * FROM appusers WHERE email = "+connection.escape(req.body.email)+" AND  password = "+connection.escape(req.body.password);
      connection.query(sql, function (err, result) {
         if (err) {
           res.status(200).send({
@@ -103,6 +103,8 @@ module.exports = {
 
         if(req.query.type == 0){
           where = "WHERE DATE(creared_date) BETWEEN "+connection.escape(start_date)+" AND "+connection.escape(end_date)+" AND added_by = "+connection.escape(req.query.added_by)+" ";
+        }else{
+          where = "WHERE DATE(creared_date) BETWEEN "+connection.escape(start_date)+" AND "+connection.escape(end_date);
         }
         
       
