@@ -33,8 +33,9 @@ module.exports = {
       });
     } else {
 
-      var sql = "SELECT * FROM appusers WHERE email = "+connection.escape(req.body.email)+" AND  password = MD5("+connection.escape(req.body.password)+") ";
-      connection.query(sql, function (err, result) {
+      // var sql = "SELECT * FROM appusers WHERE email = "+connection.escape(req.body.email)+" AND  password = MD5("+connection.escape(req.body.password)+") ";
+     var sql = "SELECT * FROM users WHERE email = "+connection.escape(req.body.email)+" AND  password = "+connection.escape(req.body.password);
+     connection.query(sql, function (err, result) {
         if (err) {
           res.status(200).send({
             status: "error",
@@ -124,7 +125,7 @@ module.exports = {
             message: err,
           });
           }else{
-            var sql = "SELECT * FROM lead "+where;
+            var sql = "SELECT * FROM `lead` "+where;
             connection.query(sql, function (err, result2) {
               if (err) {
                 res.status(200).send({
