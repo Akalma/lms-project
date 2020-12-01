@@ -118,7 +118,7 @@ module.exports = {
       var CountSQL = "SELECT COUNT(*) as count FROM vw_appusers "+where;
       connection.query(CountSQL, function (err, result) {
       var count = result[0].count;
-      var sql = "SELECT * FROM vw_appusers "+where+" limit "+(Number(req.query.page)*Number(req.query.limit))+", "+req.query.limit+"";;
+      var sql = "SELECT * FROM vw_appusers "+where+" limit "+((Number(req.query.page)-1)*Number(req.query.limit))+", "+req.query.limit+"";;
       var noLimit_sql = "SELECT * FROM vw_appusers "+where;
       
       connection.query(sql, function (err, result) {
