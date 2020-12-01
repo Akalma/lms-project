@@ -15,7 +15,7 @@ export default function Home() {
   const [startDate2, setStartDate2] = useState();
 
   const [activePage, setActivePage] = useState(1);
-  const [per_page, setPerPage]     = useState(10);
+  const [per_page, setPerPage]     = useState(20);
   const [total_record, setTotalRecord] = useState();
   const [data, setData] = useState([]);
   const [mockData, setMockData ] = useState([]);
