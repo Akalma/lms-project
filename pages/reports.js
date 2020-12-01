@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import axios from 'axios';
 import Pagination from "react-js-pagination";
 import CsvDownload from 'react-json-to-csv';
+
 export default function Home() {
 
   const today = new Date();
@@ -73,6 +74,8 @@ export default function Home() {
           <td>{data[i].existing_broadband}</td>
           <td>{data[i].lead_type}</td>
           <td>{data[i].name}</td>
+          <td>{data[i].email}</td>
+          <td>{data[i].created_date}</td>
         </tr>
       );
     }
@@ -164,6 +167,8 @@ export default function Home() {
                 <th scope="col">Existing Broadband</th>
                 <th scope="col">Lead Type</th>
                 <th scope="col">Added By</th>
+                  <th scope="col">Login Id</th>
+                  <th scope="col">Created Date</th>
               </tr>
             </thead>
             <tbody>

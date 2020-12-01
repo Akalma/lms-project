@@ -139,7 +139,7 @@ module.exports = {
                   res.status(200).send({
                     status: "success",
                     result: result,
-                    mock_result: result2,
+                    mock_result: result,
                     totalCount: count
                   });
                   
