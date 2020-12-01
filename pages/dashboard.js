@@ -145,9 +145,9 @@ export default function Home() {
                 <div className="form-group">
 				<Field as="select" className={'form-control form-select' + (errors.area && touched.area ? ' is-invalid' : '')} name="area">
 				 <option value=""> Select </option>
-				  <option>Value 1</option>
-				  <option>Value 1</option>
-				  <option>Value 1</option>
+				  <option>HSR Layout</option>
+				  <option>Rajaji Nagar</option>
+				  <option>Koramangala</option>
 				</Field>
 				<ErrorMessage name="area" component="div" className="invalid-feedback" />
         </div>
@@ -160,9 +160,10 @@ export default function Home() {
                 <div className="form-group">
 				<Field as="select" name="existing_broadband" className={'form-control form-select' + (errors.existing_broadband && touched.existing_broadband ? ' is-invalid' : '')}>
 				<option value=""> Select </option>
-				  <option>Value 1</option>
-				  <option>Value 1</option>
-				  <option>Value 1</option>
+				  <option>Airtel</option>
+				  <option>BSNL</option>
+				  <option>ACT</option>
+				  <option>HATHWAY</option>
 				</Field>
 				<ErrorMessage name="existing_broadband" component="div" className="invalid-feedback" />
         </div>
