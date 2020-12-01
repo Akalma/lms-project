@@ -119,6 +119,7 @@ module.exports = {
       connection.query(CountSQL, function (err, result) {
       var count = result[0].count;
       var sql = "SELECT * FROM vw_appusers "+where+" limit "+(Number(req.query.page)*Number(req.query.limit))+", "+req.query.limit+"";;
+      var noLimit_sql = "SELECT * FROM vw_appusers "+where;
       
       connection.query(sql, function (err, result) {
         if (err) {
@@ -127,7 +128,7 @@ module.exports = {
             message: err,
           });
           }else{
-            var sql = "SELECT * FROM `lead` "+where;
+            var sql = noLimit_sql;
             connection.query(sql, function (err, result2) {
               if (err) {
                 res.status(200).send({
@@ -139,7 +140,7 @@ module.exports = {
                   res.status(200).send({
                     status: "success",
                     result: result,
-                    mock_result: result,
+                    mock_result: result2,
                     totalCount: count
                   });
                   

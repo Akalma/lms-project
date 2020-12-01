@@ -97,7 +97,27 @@ CREATE TABLE `vw_appusers` (
 --
 DROP TABLE IF EXISTS `vw_appusers`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_appusers`  AS  select `lead`.`id` AS `id`,`lead`.`first_name` AS `first_name`,`lead`.`last_name` AS `last_name`,`lead`.`mobile` AS `mobile`,`lead`.`area` AS `area`,`lead`.`existing_broadband` AS `existing_broadband`,`lead`.`lead_type` AS `lead_type`,`lead`.`added_by` AS `added_by`,`lead`.`creared_date` AS `creared_date`,`appusers`.`name` AS `name` from (`lead` join `appusers` on(`appusers`.`id` = `lead`.`added_by`)) ;
+CREATE
+    ALGORITHM = UNDEFINED
+    DEFINER = `root`@`localhost`
+    SQL SECURITY DEFINER
+VIEW `vw_appusers` AS
+    SELECT
+        `lead`.`id` AS `id`,
+        `lead`.`first_name` AS `first_name`,
+        `lead`.`last_name` AS `last_name`,
+        `lead`.`mobile` AS `mobile`,
+        `lead`.`area` AS `area`,
+        `lead`.`existing_broadband` AS `existing_broadband`,
+        `lead`.`lead_type` AS `lead_type`,
+        `lead`.`added_by` AS `added_by`,
+         date_format(convert_tz(`lead`.`creared_date`,'+00:00','+05:00'),'%d/%m/%y %H:%i:%s') as `created_date`,
+        `appusers`.`name` AS `name`,
+        `appusers`.`email` AS `email`
+    FROM
+        (`lead`
+        JOIN `appusers` ON ((`appusers`.`id` = `lead`.`added_by`)));
+
 
 --
 -- Indexes for dumped tables
