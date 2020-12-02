@@ -48,8 +48,8 @@ export default function Home() {
     var params = {
       type: sessionStorage.getItem("UserType"),
       added_by: sessionStorage.getItem("UserID"),
-      // page: per_page * (pageNumber - 1),
-      page: pageNumber,
+      page: per_page * (pageNumber - 1),
+      //page: pageNumber,
       limit: per_page,
       start_date: startDate? startDate:"",
       end_date: startDate2? startDate2:""
