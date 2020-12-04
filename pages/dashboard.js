@@ -182,10 +182,12 @@ export default function Home() {
                                                         <Field as="select" name="existing_broadband"
                                                                className={'form-control form-select' + (errors.existing_broadband && touched.existing_broadband ? ' is-invalid' : '')}>
                                                             <option value=""> Select</option>
-                                                            <option>Airtel</option>
+                                                            <option>NONE</option>
+                                                            <option>AIRTEL</option>
                                                             <option>BSNL</option>
                                                             <option>ACT</option>
                                                             <option>HATHWAY</option>
+                                                            <option>OTHERS</option>
                                                         </Field>
                                                         <ErrorMessage name="existing_broadband" component="div"
                                                                       className="invalid-feedback"/>
