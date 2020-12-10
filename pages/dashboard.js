@@ -69,6 +69,7 @@ export default function Home() {
                 <script src="js/jquery.nice-select.min.js"></script>
             </Head>
             <Header/>
+            
             <section id="home-section">
                 <div className="container">
                     <div className="row">
@@ -89,7 +90,8 @@ export default function Home() {
                                         area: '',
                                         existing_broadband: '',
                                         lead_type: '',
-                                        added_by: added_by
+                                        added_by: added_by,
+                                        remarks:''
                                     }}
                                     validationSchema={Yup.object().shape({
                                         first_name: Yup.string()
@@ -128,9 +130,9 @@ export default function Home() {
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">
-                                                    <label>Last Name</label>
+                                                    <label>Last Name (Optional)</label>
                                                     <div className="form-group">
-                                                        <Field type="text" required="required"
+                                                        <Field type="text" 
                                                                className={'form-control' + (errors.last_name && touched.last_name ? ' is-invalid' : '')}
                                                                name="first_name" name="last_name" id="last_name"/>
                                                         <ErrorMessage name="last_name" component="div"
@@ -205,9 +207,23 @@ export default function Home() {
                                                             <option value="HOT">HOT</option>
                                                             <option value="WARM">WARM</option>
                                                             <option value="COLD">COLD</option>
+                                                            <option value="CLOSED">CLOSED</option>
                                                         </Field>
                                                         <ErrorMessage name="lead_type" component="div"
                                                                       className="invalid-feedback"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div className="row">
+
+                                                <div className="col-md-12">
+                                                    <label>Remarks (Optional)</label>
+                                                    <div className="form-group">
+                                                        <Field component="textarea"
+                                                               className={'form-control' + (errors.remarks && touched.remarks ? ' is-invalid' : '')}
+                                                               name="remarks" id="remarks"/>
+                                                        <ErrorMessage name="remarks" component="div" className="invalid-feedback"/>
                                                     </div>
                                                 </div>
                                             </div>

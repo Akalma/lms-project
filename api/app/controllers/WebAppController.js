@@ -68,7 +68,7 @@ module.exports = {
       });
     } else {
 
-      var sql = "INSERT INTO `lead` (`first_name`, `last_name`, `mobile`, `area`, `existing_broadband`, `lead_type`, `added_by`) VALUES ("+connection.escape(req.body.first_name)+", "+connection.escape(req.body.last_name)+", "+connection.escape(req.body.mobile)+", "+connection.escape(req.body.area)+", "+connection.escape(req.body.existing_broadband)+", "+connection.escape(req.body.lead_type)+" , "+connection.escape(req.body.added_by)+")";
+      var sql = "INSERT INTO `lead` (`first_name`, `last_name`, `mobile`, `area`, `existing_broadband`, `lead_type`, `added_by`, `remarks`) VALUES ("+connection.escape(req.body.first_name)+", "+connection.escape(req.body.last_name)+", "+connection.escape(req.body.mobile)+", "+connection.escape(req.body.area)+", "+connection.escape(req.body.existing_broadband)+", "+connection.escape(req.body.lead_type)+" , "+connection.escape(req.body.added_by)+" , "+connection.escape(req.body.remarks)+"  )";
       connection.query(sql, function (err, result) {
         if (err) {
           res.status(200).send({
@@ -150,8 +150,55 @@ module.exports = {
           }
         });
       });
-
-
    }
   },
+
+  ChnagePassword: function (req, res) {
+    const errors = validationResult(req);
+    if (Object.keys(errors.array()).length > 0) {
+      res.status(200).send({
+        status: "validation_error",
+        errors: errors.array(),
+      });
+    } else {
+
+    //var sql = "SELECT * FROM appusers WHERE email = "+connection.escape(req.body.email)+" AND  password = MD5("+connection.escape(req.body.password)+") ";
+     var sql = "SELECT * FROM appusers WHERE id = "+connection.escape(req.body.UserID)+" AND  password = "+connection.escape(req.body.current_password);
+     connection.query(sql, function (err, result) {
+        if (err) {
+          res.status(200).send({
+            status: "error",
+            message: err,
+          });
+        }else{
+          if(result.length > 0){
+            
+            ////////////////
+            var sql = "UPDATE appusers SET password="+connection.escape(req.body.new_password)+" WHERE id="+connection.escape(req.body.UserID);
+            connection.query(sql, function (err, result) {
+                if (err) {
+                  res.status(200).send({
+                    status: "error",
+                    message: err,
+                  });
+                }else{
+                  res.status(200).send({
+                    status: "success",
+                    message: "Password has been updated"
+                  })
+                }
+              });
+            ////////////////
+
+          }else{
+            res.status(200).send({
+              status: "error",
+              message: "Current password is wrong!"
+            });
+          }
+        }
+      });
+    }
+  },
+
 };

@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import axios from 'axios';
 import Pagination from "react-js-pagination";
 import CsvDownload from 'react-json-to-csv';
+var moment = require('moment');
 
 export default function Home() {
 
@@ -76,7 +77,7 @@ export default function Home() {
           <td>{data[i].lead_type}</td>
           <td>{data[i].name}</td>
           <td>{data[i].email}</td>
-          <td>{data[i].created_date}</td>
+          <td>{moment(data[i].creared_date).format('MMMM Do, YYYY H:mma')}</td>
         </tr>
       );
     }

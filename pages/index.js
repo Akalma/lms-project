@@ -14,6 +14,7 @@ export default function Home() {
 			  sessionStorage.setItem("UserLogin", true);
 			  sessionStorage.setItem("UserID", Response.data.result.id);
 			  sessionStorage.setItem("UserType", Response.data.result.type);
+			  sessionStorage.setItem("LoginUserName", Response.data.result.name);
 			Router.push('/dashboard');
 		  	notify_success(Response.data.message);
 		} else {

@@ -9,9 +9,11 @@ import React, { useState, useEffect } from 'react';
  * @returns Footer component
 */
 export default () => {
-    const router = useRouter()
+    const [LoginUserName, setLoginUserName] = useState("");
+    const router = useRouter();
     useEffect(() => {
-      if(sessionStorage.getItem("UserLogin") == 'false' || sessionStorage.getItem("UserLogin") == 'null'){
+      setLoginUserName(sessionStorage.getItem("LoginUserName"));
+      if(sessionStorage.getItem("UserLogin") == 'false' || sessionStorage.getItem("UserLogin") == 'null' || sessionStorage.getItem("UserLogin") == ''){
         sessionStorage.setItem("UserLogin", false);
         notify_success("unauthorized access");
         Router.push('/');
@@ -96,6 +98,7 @@ export default () => {
         </div>
         </div>
     </header>
+    <div className="container pt-4"><strong>Hi, {LoginUserName}</strong></div>
     </>
   )
 }

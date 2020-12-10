@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2020 at 06:15 PM
+-- Generation Time: Dec 10, 2020 at 11:01 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -41,7 +41,7 @@ CREATE TABLE `appusers` (
 --
 
 INSERT INTO `appusers` (`id`, `name`, `email`, `password`, `type`, `created`) VALUES
-(1, 'Admin', 'admin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1, '0000-00-00 00:00:00'),
+(1, 'Admin', 'admin@gmail.com', '123456', 1, '0000-00-00 00:00:00'),
 (3, 'Normal User', 'admin2@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
@@ -57,8 +57,9 @@ CREATE TABLE `lead` (
   `mobile` varchar(255) DEFAULT NULL,
   `area` varchar(255) DEFAULT NULL,
   `existing_broadband` varchar(255) DEFAULT NULL,
-  `lead_type` enum('HOT','WARM','COLD','') DEFAULT NULL,
+  `lead_type` enum('HOT','WARM','COLD','CLOSED','') DEFAULT NULL,
   `added_by` int(11) DEFAULT NULL,
+  `remarks` text DEFAULT NULL,
   `creared_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -66,10 +67,12 @@ CREATE TABLE `lead` (
 -- Dumping data for table `lead`
 --
 
-INSERT INTO `lead` (`id`, `first_name`, `last_name`, `mobile`, `area`, `existing_broadband`, `lead_type`, `added_by`, `creared_date`) VALUES
-(7, 'Satyajit', 'Sadhukhan', '+918442922399', 'Value 1', 'Value 1', 'HOT', 3, '2020-11-27 22:01:43'),
-(8, 'John', 'Doe', '9184429223', 'Value 1', 'Value 1', 'COLD', 3, '2020-11-27 22:02:19'),
-(9, 'John', 'Doe', '9184429223', 'Value 1', 'Value 1', 'COLD', 1, '2020-11-27 22:02:19');
+INSERT INTO `lead` (`id`, `first_name`, `last_name`, `mobile`, `area`, `existing_broadband`, `lead_type`, `added_by`, `remarks`, `creared_date`) VALUES
+(1, 'Satyajit', 'Sadhukhan', '8442922399', 'Value 1', 'Value 1', 'HOT', 1, '', '2020-12-01 00:31:33'),
+(2, 'Satyajit', 'Sadhukhan', '8442922399', 'Value 1', 'Value 1', 'HOT', 1, '', '2020-12-01 00:36:23'),
+(3, 'John', 'Sadhukhan', '2145858956', 'Value 1', 'Value 1', 'HOT', 3, '', '2020-12-01 00:37:18'),
+(5, 'Satyajit', 'Sadhukhan', '+918442922399', 'gg', 'AIRTEL', 'CLOSED', 1, 'This is test remarks', '2020-12-10 14:55:16'),
+(6, 'Satyajit', 'Sadhukhan', '+918442922399', 'gg', 'OTHERS', 'HOT', 1, '', '2020-12-10 15:00:40');
 
 -- --------------------------------------------------------
 
@@ -84,10 +87,11 @@ CREATE TABLE `vw_appusers` (
 ,`mobile` varchar(255)
 ,`area` varchar(255)
 ,`existing_broadband` varchar(255)
-,`lead_type` enum('HOT','WARM','COLD','')
+,`lead_type` enum('HOT','WARM','COLD','CLOSED','')
 ,`added_by` int(11)
 ,`creared_date` datetime
 ,`name` varchar(255)
+,`remarks` text
 );
 
 -- --------------------------------------------------------
@@ -97,27 +101,7 @@ CREATE TABLE `vw_appusers` (
 --
 DROP TABLE IF EXISTS `vw_appusers`;
 
-CREATE
-    ALGORITHM = UNDEFINED
-    DEFINER = `root`@`localhost`
-    SQL SECURITY DEFINER
-VIEW `vw_appusers` AS
-    SELECT
-        `lead`.`id` AS `id`,
-        `lead`.`first_name` AS `first_name`,
-        `lead`.`last_name` AS `last_name`,
-        `lead`.`mobile` AS `mobile`,
-        `lead`.`area` AS `area`,
-        `lead`.`existing_broadband` AS `existing_broadband`,
-        `lead`.`lead_type` AS `lead_type`,
-        `lead`.`added_by` AS `added_by`,
-         date_format(convert_tz(`lead`.`creared_date`,'+00:00','+05:00'),'%d/%m/%y %H:%i:%s') as `created_date`,
-        `appusers`.`name` AS `name`,
-        `appusers`.`email` AS `email`
-    FROM
-        (`lead`
-        JOIN `appusers` ON ((`appusers`.`id` = `lead`.`added_by`)));
-
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_appusers`  AS  select `lead`.`id` AS `id`,`lead`.`first_name` AS `first_name`,`lead`.`last_name` AS `last_name`,`lead`.`mobile` AS `mobile`,`lead`.`area` AS `area`,`lead`.`existing_broadband` AS `existing_broadband`,`lead`.`lead_type` AS `lead_type`,`lead`.`added_by` AS `added_by`,`lead`.`creared_date` AS `creared_date`,`appusers`.`name` AS `name`,`lead`.`remarks` AS `remarks` from (`lead` join `appusers` on(`appusers`.`id` = `lead`.`added_by`)) ;
 
 --
 -- Indexes for dumped tables
@@ -149,7 +133,7 @@ ALTER TABLE `appusers`
 -- AUTO_INCREMENT for table `lead`
 --
 ALTER TABLE `lead`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
