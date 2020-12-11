@@ -98,7 +98,7 @@ export default function Home() {
                                                 <div className="col-md-12">
                                                     <label>Current Password</label>
                                                     <div className="form-group">
-                                                        <Field type="tel" required="required"
+                                                        <Field type="password" required="required"
                                                                className={'form-control' + (errors.current_password && touched.current_password ? ' is-invalid' : '')}
                                                                name="current_password" id="current_password"/>
                                                         <ErrorMessage name="current_password" component="div"
@@ -112,7 +112,7 @@ export default function Home() {
                                                 <div className="col-md-12">
                                                     <label>New Password</label>
                                                     <div className="form-group">
-                                                        <Field type="text" required="required"
+                                                        <Field type="password" required="required"
                                                                className={'form-control' + (errors.new_password && touched.new_password ? ' is-invalid' : '')}
                                                                name="new_password" id="new_password"/>
                                                         <ErrorMessage name="new_password" component="div"

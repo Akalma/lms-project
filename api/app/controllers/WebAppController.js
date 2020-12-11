@@ -115,11 +115,11 @@ module.exports = {
         }
       }
 
-      var CountSQL = "SELECT COUNT(*) as count FROM vw_appusers "+where;
+      var CountSQL = "SELECT COUNT(*) as count FROM vw_leads "+where;
       connection.query(CountSQL, function (err, result) {
       var count = result[0].count;
-      var sql = "SELECT * FROM vw_appusers "+where+" limit "+(Number(req.query.page)*Number(req.query.limit))+", "+req.query.limit+"";;
-      var noLimit_sql = "SELECT * FROM vw_appusers "+where;
+      var sql = "SELECT * FROM vw_leads "+where+" ORDER BY id DESC limit "+(Number(req.query.page)*Number(req.query.limit))+", "+req.query.limit+"";;
+      var noLimit_sql = "SELECT * FROM vw_leads "+where+" ORDER BY id DESC";
       
       connection.query(sql, function (err, result) {
         if (err) {
