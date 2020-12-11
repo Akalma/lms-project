@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2020 at 11:01 AM
+-- Generation Time: Dec 11, 2020 at 09:19 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -77,10 +77,10 @@ INSERT INTO `lead` (`id`, `first_name`, `last_name`, `mobile`, `area`, `existing
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `vw_appusers`
+-- Stand-in structure for view `vw_leads`
 -- (See below for the actual view)
 --
-CREATE TABLE `vw_appusers` (
+CREATE TABLE `vw_leads` (
 `id` int(11)
 ,`first_name` varchar(255)
 ,`last_name` varchar(255)
@@ -97,11 +97,11 @@ CREATE TABLE `vw_appusers` (
 -- --------------------------------------------------------
 
 --
--- Structure for view `vw_appusers`
+-- Structure for view `vw_leads`
 --
-DROP TABLE IF EXISTS `vw_appusers`;
+DROP TABLE IF EXISTS `vw_leads`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_appusers`  AS  select `lead`.`id` AS `id`,`lead`.`first_name` AS `first_name`,`lead`.`last_name` AS `last_name`,`lead`.`mobile` AS `mobile`,`lead`.`area` AS `area`,`lead`.`existing_broadband` AS `existing_broadband`,`lead`.`lead_type` AS `lead_type`,`lead`.`added_by` AS `added_by`,`lead`.`creared_date` AS `creared_date`,`appusers`.`name` AS `name`,`lead`.`remarks` AS `remarks` from (`lead` join `appusers` on(`appusers`.`id` = `lead`.`added_by`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_leads`  AS  select `lead`.`id` AS `id`,`lead`.`first_name` AS `first_name`,`lead`.`last_name` AS `last_name`,`lead`.`mobile` AS `mobile`,`lead`.`area` AS `area`,`lead`.`existing_broadband` AS `existing_broadband`,`lead`.`lead_type` AS `lead_type`,`lead`.`added_by` AS `added_by`,`lead`.`creared_date` AS `creared_date`,`appusers`.`name` AS `name`,`lead`.`remarks` AS `remarks` from (`lead` join `appusers` on(`appusers`.`id` = `lead`.`added_by`)) ;
 
 --
 -- Indexes for dumped tables
