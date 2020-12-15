@@ -77,7 +77,8 @@ export default function Home() {
           <td>{data[i].lead_type}</td>
           <td>{data[i].name}</td>
           <td>{data[i].email}</td>
-          <td>{moment(data[i].creared_date).format('MMMM Do, YYYY H:mma')}</td>
+          {/*<td>{moment(data[i].created_date).format('MMMM Do, YYYY H:mma')}</td>*/}
+          <td>{data[i].created_date}</td>
         </tr>
       );
     }
