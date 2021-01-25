@@ -1,0 +1,30 @@
+.sideBarNav{
+    width: 70px;
+    height: 100%;
+    background: #149D89;
+}
+.navMenu{
+    color: white;
+    cursor: pointer;
+    padding: 10px 0px;
+    font-size: 15px;
+    text-align: center;
+    align-items: center;
+}
+.sideBarNav .active{
+    background: #028571;
+}
+.navMenu:hover{
+    background: #0a7061;
+
+}
+.navMenu a {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: transparent;
+}
+.navMenu a:hover {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: transparent;
+}
