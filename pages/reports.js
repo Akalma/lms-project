@@ -83,7 +83,7 @@ export default function Home() {
       );
     }
   }
-  if(data.length == 0){
+  if(data?.length === 0 || !data){
     renderTableData.push(<tr className="Hborder">  <td className = "geeks text-center" colSpan="5">No record found</td>  </tr>);
   }
   
